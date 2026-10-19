@@ -7,22 +7,8 @@ const categories = [
   { id:'sutia', name:'Sutiãs', image:'assets/sutians/sutian1.jpeg' },
   { id:'robe', name:'Robes', image:'assets/roby/roby1.webp' }
 ];
-// Produtos fictícios para demonstrar o layout: altere fotos, nomes, preços e categorias.
-const products = [
-  {id:1,name:'Conjunto Delicadeza',category:'lingerie',price:'Consulte o valor',tag:'Destaque',image:'assets/lingeries/lingeri1.webp'},
-  {id:2,name:'Calcinha Essencial',category:'calcinha',price:'Consulte o valor',tag:'',image:'assets/calcinhas/calcinha1.webp'},
-  {id:3,name:'Sutiã Encanto',category:'sutia',price:'Consulte o valor',tag:'Favorito',image:'assets/sutians/sutian1.jpeg'},
-  {id:4,name:'Robe Elegance',category:'robe',price:'Consulte o valor',tag:'',image:'assets/roby/roby1.webp'},
-  {id:5,name:'Conjunto Aurora',category:'lingerie',price:'Consulte o valor',tag:'Novidade',image:'assets/lingeries/lingeri2.webp'},
-  {id:6,name:'Calcinha Conforto',category:'calcinha',price:'Consulte o valor',tag:'',image:'assets/calcinhas/calcinha2.webp'},
-  {id:7,name:'Sutiã Serena',category:'sutia',price:'Consulte o valor',tag:'',image:'assets/sutians/sutian2.jpeg'},
-  {id:8,name:'Robe Soft',category:'robe',price:'Consulte o valor',tag:'',image:'assets/roby/roby2.webp'},
-  {id:9,name:'Conjunto Rubi',category:'lingerie',price:'Consulte o valor',tag:'',image:'assets/lingeries/lingeri3.jpeg'},
-  {id:10,name:'Conjunto Rosé',category:'lingerie',price:'Consulte o valor',tag:'',image:'assets/lingeries/lingeri4.png'},
-  {id:11,name:'Calcinha Renda',category:'calcinha',price:'Consulte o valor',tag:'',image:'assets/calcinhas/calcinha3.jpeg'},
-  {id:12,name:'Sutiã Essencial',category:'sutia',price:'Consulte o valor',tag:'',image:'assets/sutians/sutian3.jpeg'},
-  {id:13,name:'Robe Delicado',category:'robe',price:'Consulte o valor',tag:'',image:'assets/roby/roby3.webp'}
-];
+// O catálogo demonstrativo é carregado de mocks/products.js antes deste arquivo.
+const priceFormatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
 const categoryName = id => categories.find(c=>c.id===id)?.name || id;
 const whatsappLink = message => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`;
 const categoriesGrid = document.querySelector('#categories-grid');
@@ -44,6 +30,41 @@ function updateCarouselControls(group){
  group.querySelector('[data-direction="previous"]').disabled=track.scrollLeft<=1;
  group.querySelector('[data-direction="next"]').disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-1;
 }
+function renderProduct(product) {
+ const price = priceFormatter.format(product.price);
+ const discount = product.payment.pixDiscountPercent;
+ // Calcula o desconto em centavos para evitar diferenças de arredondamento.
+ const priceInCents = Math.round(product.price * 100);
+ const pixPriceInCents = Math.round(priceInCents * (100 - discount) / 100);
+ const pixPrice = priceFormatter.format(pixPriceInCents / 100);
+ const installments = product.payment.creditInstallments;
+ const installmentPrice = priceFormatter.format(product.price / installments);
+ let creditDescription = `Até ${installments}x de ${installmentPrice} sem juros`;
+ if (installments === 1) {
+  creditDescription = `${price} à vista`;
+ }
+
+ return `<article class="product-card">
+  <div class="product-image">
+   <img src="${product.image}" alt="Imagem ilustrativa de ${product.name}" loading="lazy">
+   ${product.tag ? `<span class="product-tag">${product.tag}</span>` : ''}
+  </div>
+  <div class="product-meta">
+   <span class="product-category">${categoryName(product.category)}</span>
+   <h4>${product.name}</h4>
+   <strong class="product-price">${price}</strong>
+   <details class="payment-details">
+    <summary aria-label="Formas de pagamento de ${product.name}">Formas de pagamento</summary>
+    <ul class="payment-options">
+     <li><strong>Pix</strong><span>${pixPrice}${discount > 0 ? ` · ${discount}% de desconto` : ' à vista'}</span></li>
+     <li><strong>Cartão de débito</strong><span>${price} à vista</span></li>
+     <li><strong>Cartão de crédito</strong><span>${creditDescription}</span></li>
+    </ul>
+   </details>
+   <a class="product-link" href="${whatsappLink(`Olá! Gostaria de saber mais sobre ${product.name}.`)}" target="_blank" rel="noopener noreferrer">Consultar no WhatsApp ↗</a>
+  </div>
+ </article>`;
+}
 function renderProducts(id='todos'){
  const visibleCategories=id==='todos'?categories:categories.filter(category=>category.id===id);
  productGrid.innerHTML=visibleCategories.map(category=>{
@@ -57,7 +78,7 @@ function renderProducts(id='todos'){
     </div>
    </div>
    <div class="product-carousel" id="carousel-${category.id}" role="region" aria-roledescription="carrossel" aria-label="Produtos de ${category.name}" tabindex="0">
-    ${categoryProducts.map(p=>`<article class="product-card"><div class="product-image"><img src="${p.image}" alt="Imagem ilustrativa de ${p.name}" loading="lazy">${p.tag?`<span class="product-tag">${p.tag}</span>`:''}</div><div class="product-meta"><span class="product-category">${categoryName(p.category)}</span><h4>${p.name}</h4><p>${p.price}</p><a class="product-link" href="${whatsappLink(`Olá! Gostaria de saber mais sobre ${p.name}.`)}" target="_blank" rel="noopener noreferrer">Consultar no WhatsApp ↗</a></div></article>`).join('')}
+    ${categoryProducts.map(renderProduct).join('')}
    </div>
   </section>`;
  }).join('');
