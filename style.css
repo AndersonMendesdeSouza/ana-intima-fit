@@ -28,5 +28,5 @@
 
 @media(max-width:640px){.hero .eyebrow{font-size:9px;letter-spacing:.16em}.hero .button{max-width:100%}}
 
-.button-light span{font-size:18px;line-height:1}
+.button-light svg{display:block;width:18px;height:18px;flex-shrink:0}
 .button-light:focus-visible{outline:2px solid var(--cream);outline-offset:4px}
