@@ -1,5 +1,5 @@
 // CONFIGURAÇÃO: substitua pelo WhatsApp da loja, com DDI 55 + DDD + número, apenas dígitos.
-const WHATSAPP = '5599999999999';
+const WHATSAPP = '5564999999687';
 // Fotos locais organizadas por categoria na pasta assets.
 const categories = [
   { id:'lingerie', name:'Lingeries', image:'assets/lingeries/lingeri1.webp' },
