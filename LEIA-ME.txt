@@ -1,0 +1,9 @@
+ANA'S INTIMAFIT — CATÁLOGO HTML/CSS/JS
+
+1. Abra index.html no navegador.
+2. No script.js, altere WHATSAPP para o número real (55 + DDD + número, sem sinais).
+3. No array products, substitua os itens demonstrativos pelos produtos reais.
+4. Substitua as URLs de imagens de demonstração por fotos autorizadas da loja, por exemplo: assets/images/conjunto-01.jpg.
+5. Atualize também as fotos das categorias e os fundos .hero-photo e .story-image no style.css.
+6. As fotos atuais são apenas ilustrativas e não correspondem ao estoque da loja.
+7. A fonte Google Fonts e as fotos de demonstração exigem internet. Não há frameworks ou bibliotecas JavaScript.
