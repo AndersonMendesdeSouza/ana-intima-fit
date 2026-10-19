@@ -16,7 +16,12 @@ const products = [
   {id:5,name:'Conjunto Aurora',category:'lingerie',price:'Consulte o valor',tag:'Novidade',image:'assets/lingeries/lingeri2.webp'},
   {id:6,name:'Calcinha Conforto',category:'calcinha',price:'Consulte o valor',tag:'',image:'assets/calcinhas/calcinha2.webp'},
   {id:7,name:'Sutiã Serena',category:'sutia',price:'Consulte o valor',tag:'',image:'assets/sutians/sutian2.jpeg'},
-  {id:8,name:'Robe Soft',category:'robe',price:'Consulte o valor',tag:'',image:'assets/roby/roby2.webp'}
+  {id:8,name:'Robe Soft',category:'robe',price:'Consulte o valor',tag:'',image:'assets/roby/roby2.webp'},
+  {id:9,name:'Conjunto Rubi',category:'lingerie',price:'Consulte o valor',tag:'',image:'assets/lingeries/lingeri3.jpeg'},
+  {id:10,name:'Conjunto Rosé',category:'lingerie',price:'Consulte o valor',tag:'',image:'assets/lingeries/lingeri4.png'},
+  {id:11,name:'Calcinha Renda',category:'calcinha',price:'Consulte o valor',tag:'',image:'assets/calcinhas/calcinha3.jpeg'},
+  {id:12,name:'Sutiã Essencial',category:'sutia',price:'Consulte o valor',tag:'',image:'assets/sutians/sutian3.jpeg'},
+  {id:13,name:'Robe Delicado',category:'robe',price:'Consulte o valor',tag:'',image:'assets/roby/roby3.webp'}
 ];
 const categoryName = id => categories.find(c=>c.id===id)?.name || id;
 const whatsappLink = message => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`;
