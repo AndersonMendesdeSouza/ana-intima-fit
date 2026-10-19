@@ -11,6 +11,7 @@ const categories = [
 const priceFormatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
 const categoryName = id => categories.find(c=>c.id===id)?.name || id;
 const whatsappLink = message => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`;
+const arrowIcon = '<svg class="arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14" /></svg>';
 const categoriesGrid = document.querySelector('#categories-grid');
 const filters = document.querySelector('#filters');
 const productGrid = document.querySelector('#product-grid');
@@ -32,7 +33,7 @@ const observer = new IntersectionObserver(entries=>{
 },{threshold:.1});
 function observeNew(){document.querySelectorAll('.reveal:not(.visible)').forEach(el=>observer.observe(el))}
 function renderCategories(){
-  categoriesGrid.innerHTML=categories.map(c=>`<a href="#colecao" class="category-card reveal" data-category="${c.id}" aria-label="Ver ${c.name}"><img src="${c.image}" alt="Imagem ilustrativa da categoria ${c.name}" loading="lazy"><div class="category-content"><div><span>EXPLORE A COLEÇÃO</span><h3>${c.name}</h3></div><span class="category-arrow">↗</span></div></a>`).join('');
+  categoriesGrid.innerHTML=categories.map(c=>`<a href="#colecao" class="category-card reveal" data-category="${c.id}" aria-label="Ver ${c.name}"><img src="${c.image}" alt="Imagem ilustrativa da categoria ${c.name}" loading="lazy"><div class="category-content"><div><span>EXPLORE A COLEÇÃO</span><h3>${c.name}</h3></div><span class="category-arrow">${arrowIcon}</span></div></a>`).join('');
   categoriesGrid.querySelectorAll('[data-category]').forEach(link=>link.addEventListener('click',()=>selectFilter(link.dataset.category)));
 }
 function renderFilters(){filters.innerHTML=options.map((o,i)=>`<button type="button" class="filter ${i===0?'active':''}" data-filter="${o.id}" aria-pressed="${i===0}">${o.name}</button>`).join('');filters.querySelectorAll('button').forEach(button=>button.addEventListener('click',()=>selectFilter(button.dataset.filter)))}
@@ -73,7 +74,7 @@ function renderProduct(product) {
      <li><strong>Cartão de crédito</strong><span>${creditDescription}</span></li>
     </ul>
    </details>
-   <a class="product-link" href="${whatsappLink(`Olá! Gostaria de saber mais sobre ${product.name}.`)}" target="_blank" rel="noopener noreferrer">Consultar no WhatsApp ↗</a>
+   <a class="product-link" href="${whatsappLink(`Olá! Gostaria de saber mais sobre ${product.name}.`)}" target="_blank" rel="noopener noreferrer">Consultar no WhatsApp ${arrowIcon}</a>
   </div>
  </article>`;
 }
@@ -85,8 +86,8 @@ function renderProducts(id='todos'){
    <div class="product-group-header">
     <h3 id="heading-${category.id}">${category.name}</h3>
     <div class="carousel-controls">
-     <button type="button" class="carousel-button" data-direction="previous" aria-label="Ver ${category.name} anteriores" aria-controls="carousel-${category.id}">←</button>
-     <button type="button" class="carousel-button" data-direction="next" aria-label="Ver próximos produtos de ${category.name}" aria-controls="carousel-${category.id}">→</button>
+     <button type="button" class="carousel-button" data-direction="previous" aria-label="Ver ${category.name} anteriores" aria-controls="carousel-${category.id}"><svg class="arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 12H5m7 7-7-7 7-7" /></svg></button>
+     <button type="button" class="carousel-button" data-direction="next" aria-label="Ver próximos produtos de ${category.name}" aria-controls="carousel-${category.id}"><svg class="arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14m-7-7 7 7-7 7" /></svg></button>
     </div>
    </div>
    <div class="product-carousel" id="carousel-${category.id}" role="region" aria-roledescription="carrossel" aria-label="Produtos de ${category.name}" tabindex="0">
