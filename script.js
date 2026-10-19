@@ -15,6 +15,18 @@ const categoriesGrid = document.querySelector('#categories-grid');
 const filters = document.querySelector('#filters');
 const productGrid = document.querySelector('#product-grid');
 const options = [{id:'todos',name:'Todos'},...categories];
+const hero = document.querySelector('.hero');
+const siteHeader = document.querySelector('.site-header');
+const announcement = document.querySelector('.announcement');
+function updateHeroOffset() {
+ const topOffset = siteHeader.offsetHeight + announcement.offsetHeight;
+ hero.style.setProperty('--hero-top-offset', `${topOffset}px`);
+}
+// Recalcula quando fontes, quebras de linha ou a largura alteram o cabeçalho.
+const heroHeaderObserver = new ResizeObserver(updateHeroOffset);
+heroHeaderObserver.observe(siteHeader);
+heroHeaderObserver.observe(announcement);
+updateHeroOffset();
 const observer = new IntersectionObserver(entries=>{
   entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}});
 },{threshold:.1});
