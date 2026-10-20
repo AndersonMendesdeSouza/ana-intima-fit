@@ -55,7 +55,7 @@ function renderProduct(product) {
   let creditPayment = '';
   if (Number.isInteger(installments) && installments > 0) {
    const installmentPrice = priceFormatter.format(product.price / installments);
-   creditPayment = `<li><strong>Cartão de crédito</strong><span>Em ${installments}x de ${installmentPrice}.</span></li>`;
+   creditPayment = `<li><strong>Cartão de crédito</strong><span>Até ${installments}x de ${installmentPrice}.</span></li>`;
   }
   paymentContent = `<ul class="payment-options">
    <li><strong>Por unidade</strong><span>${price} · ${product.payment.methods}.</span></li>
