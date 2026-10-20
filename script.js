@@ -2,12 +2,12 @@
 const WHATSAPP = '5564999999687';
 // Fotos locais organizadas por categoria na pasta assets.
 const categories = [
-  { id:'lingerie', name:'Lingeries', image:'assets/lingeries/lingeri1.webp' },
-  { id:'calcinha', name:'Calcinhas', image:'assets/calcinhas/calcinha1.webp' },
-  { id:'sutia', name:'Sutiãs', image:'assets/sutians/sutian1.jpeg' },
-  { id:'robe', name:'Robes', image:'assets/roby/roby1.webp' }
+  { id:'calcinha', name:'Calcinhas GD1', image:'assets/calcinhas/calcinha1.webp' },
+  { id:'lingerie', name:'Lingeries', image:'assets/lingeries/bojoSoft/bojosoftbej.jpg' },
+  { id:'baby-doll', name:'Baby Doll', image:'assets/lingeries/lingeri4.png' },
+  { id:'camisola', name:'Camisola', image:'assets/roby/roby2.webp' }
 ];
-// O catálogo demonstrativo é carregado de mocks/products.js antes deste arquivo.
+// Os produtos são carregados de mocks/products.js antes deste arquivo.
 const priceFormatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
 const categoryName = id => categories.find(c=>c.id===id)?.name || id;
 const whatsappLink = message => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`;
@@ -45,38 +45,79 @@ function updateCarouselControls(group){
 }
 function renderProduct(product) {
  const price = priceFormatter.format(product.price);
- const discount = product.payment.pixDiscountPercent;
- // Calcula o desconto em centavos para evitar diferenças de arredondamento.
- const priceInCents = Math.round(product.price * 100);
- const pixPriceInCents = Math.round(priceInCents * (100 - discount) / 100);
- const pixPrice = priceFormatter.format(pixPriceInCents / 100);
- const installments = product.payment.creditInstallments;
- const installmentPrice = priceFormatter.format(product.price / installments);
- let creditDescription = `Até ${installments}x de ${installmentPrice} sem juros`;
- if (installments === 1) {
-  creditDescription = `${price} à vista`;
+ const sizes = product.sizes || [];
+ const images = Array.isArray(product.image) ? product.image : [product.image];
+ const hasGallery = images.length > 1;
+ let paymentContent = '<p>Consulte as condições de pagamento pelo WhatsApp.</p>';
+ let bulkOffer = '';
+ if (product.payment) {
+  const installments = product.payment.creditInstallments;
+  let creditPayment = '';
+  if (Number.isInteger(installments) && installments > 0) {
+   const installmentPrice = priceFormatter.format(product.price / installments);
+   creditPayment = `<li><strong>Cartão de crédito</strong><span>Em ${installments}x de ${installmentPrice}.</span></li>`;
+  }
+  paymentContent = `<ul class="payment-options">
+   <li><strong>Por unidade</strong><span>${price} · ${product.payment.methods}.</span></li>
+   ${creditPayment}
+  </ul>`;
+  const bulk = product.payment.bulk;
+  if (bulk) {
+   const bulkPrice = priceFormatter.format(bulk.unitPrice);
+   bulkOffer = `<p>A partir de ${bulk.minQuantity} unidades: ${bulkPrice} cada, à vista em ${bulk.methods}.</p>`;
+  }
  }
 
  return `<article class="product-card">
-  <div class="product-image">
-   <img src="${product.image}" alt="Imagem ilustrativa de ${product.name}" loading="lazy">
+  <div class="product-image"${hasGallery ? ` data-product-gallery role="region" aria-roledescription="carrossel" aria-label="Fotos de ${product.name}"` : ''}>
+   ${images.map((image, index) => `<img class="product-photo" src="${image}" alt="${product.name} · foto ${index + 1} de ${images.length}" loading="lazy"${index > 0 ? ' hidden' : ''}>`).join('')}
    ${product.tag ? `<span class="product-tag">${product.tag}</span>` : ''}
+   <span class="product-discount">−5% no Pix ou dinheiro</span>
+   ${hasGallery ? `<button type="button" class="photo-button photo-previous" data-photo-direction="previous" aria-label="Ver foto anterior de ${product.name}"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6" /></svg></button>
+   <button type="button" class="photo-button photo-next" data-photo-direction="next" aria-label="Ver próxima foto de ${product.name}"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 6 6 6-6 6" /></svg></button>
+   <span class="photo-counter" aria-live="polite" aria-atomic="true">1 / ${images.length}</span>` : ''}
   </div>
   <div class="product-meta">
    <span class="product-category">${categoryName(product.category)}</span>
    <h4>${product.name}</h4>
    <strong class="product-price">${price}</strong>
+   ${sizes.length > 0 ? `<ul class="product-sizes" aria-label="Tamanhos de ${product.name}">${sizes.map(size => `<li class="product-size">${size}</li>`).join('')}</ul>` : ''}
+   ${bulkOffer}
    <details class="payment-details">
     <summary aria-label="Formas de pagamento de ${product.name}">Formas de pagamento</summary>
-    <ul class="payment-options">
-     <li><strong>Pix</strong><span>${pixPrice}${discount > 0 ? ` · ${discount}% de desconto` : ' à vista'}</span></li>
-     <li><strong>Cartão de débito</strong><span>${price} à vista</span></li>
-     <li><strong>Cartão de crédito</strong><span>${creditDescription}</span></li>
-    </ul>
+    ${paymentContent}
    </details>
-   <a class="product-link" href="${whatsappLink(`Olá! Gostaria de saber mais sobre ${product.name}.`)}" target="_blank" rel="noopener noreferrer">Consultar no WhatsApp ${arrowIcon}</a>
+   <a class="product-link" href="${whatsappLink(`Olá! Gostaria de saber mais sobre ${product.name} (${categoryName(product.category)}).`)}" target="_blank" rel="noopener noreferrer">Consultar no WhatsApp ${arrowIcon}</a>
   </div>
  </article>`;
+}
+function initializeProductGalleries() {
+ productGrid.querySelectorAll('[data-product-gallery]').forEach(gallery => {
+  const images = gallery.querySelectorAll('.product-photo');
+  const counter = gallery.querySelector('.photo-counter');
+  let currentIndex = 0;
+
+  gallery.querySelectorAll('[data-photo-direction]').forEach(button => {
+   button.addEventListener('click', () => {
+    if (button.dataset.photoDirection === 'next') {
+     currentIndex += 1;
+    } else {
+     currentIndex -= 1;
+    }
+
+    if (currentIndex >= images.length) {
+     currentIndex = 0;
+    } else if (currentIndex < 0) {
+     currentIndex = images.length - 1;
+    }
+
+    images.forEach((image, index) => {
+     image.hidden = index !== currentIndex;
+    });
+    counter.textContent = `${currentIndex + 1} / ${images.length}`;
+   });
+  });
+ });
 }
 function renderProducts(id='todos'){
  const visibleCategories=id==='todos'?categories:categories.filter(category=>category.id===id);
@@ -106,6 +147,7 @@ function renderProducts(id='todos'){
   track.addEventListener('scroll',()=>updateCarouselControls(group),{passive:true});
   updateCarouselControls(group);
  });
+ initializeProductGalleries();
  observeNew();
 }
 window.addEventListener('resize',()=>productGrid.querySelectorAll('.product-group').forEach(updateCarouselControls));
