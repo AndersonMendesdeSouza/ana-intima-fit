@@ -52,6 +52,11 @@
 .brand-logo{width:64px;height:64px;object-fit:contain;border-radius:50%}
 .footer-brand .brand-logo{width:88px;height:88px}
 .header-brand-name{display:none}
+.footer-bottom{flex-direction:column;align-items:center;gap:14px}
+.footer-credit{margin:0;text-align:center;font-size:11px;line-height:1.6;color:#c8b7af}
+.footer-credit a{display:inline-flex;align-items:center;gap:5px;vertical-align:middle;color:var(--cream);text-decoration:underline;text-decoration-color:var(--rose);text-underline-offset:3px}
+.footer-instagram-icon{width:14px;height:14px;flex-shrink:0;object-fit:contain;filter:brightness(0) invert(1);opacity:.9}
+.footer-credit a:focus-visible{outline:2px solid var(--cream);outline-offset:4px}
 @media(max-width:640px){
  .site-header .brand-logo{width:52px;height:52px}
  .header-inner{display:grid;grid-template-columns:52px minmax(0,1fr) 52px;gap:12px}
