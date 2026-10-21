@@ -105,16 +105,27 @@ const products = [
   },
   {
     id: 8,
-    name: 'Malha com renda',
+    name: 'Malha e renda',
     category: 'baby-doll',
     price: 159.90,
     payment: {
       methods: 'Pix, dinheiro ou débito',
       creditInstallments: 3,
     },
-    sizes: ['P', 'M', 'G'],
+    sizes: ['P', 'M', 'G', 'GG'],
     tag: '',
-    image: 'assets/lingeries/lingeri4.png'
+    image:[
+    'assets/babydol/babydolmalha/babydolazul.png',
+    'assets/babydol/babydolmalha/babydolazulc.png',
+    'assets/babydol/babydolmalha/babydolbranco.png',
+    'assets/babydol/babydolmalha/babydolnude.png',
+    'assets/babydol/babydolmalha/babydolpremarr.png',
+    'assets/babydol/babydolmalha/babydolpret.png',
+    'assets/babydol/babydolmalha/babydolros.png',
+    'assets/babydol/babydolmalha/babydolrosclar.png',
+    'assets/babydol/babydolmalha/babydolverd.png',
+    'assets/babydol/babydolmalha/babydolverme.png',
+  ]
   },
   {
     id: 9,
@@ -125,9 +136,14 @@ const products = [
       methods: 'Pix, dinheiro ou débito',
       creditInstallments: 3,
     },
-    sizes: ['P', 'M', 'G'],
+    sizes: ['P', 'M', 'G', 'GG'],
     tag: '',
-    image: 'assets/roby/roby1.webp'
+    image:[
+    'assets/babydol/babydolseda/babydolpret.png',
+    'assets/babydol/babydolseda/babydolamare.png',
+    'assets/babydol/babydolseda/babydolrosa.png',
+    'assets/babydol/babydolseda/babydolverd.png',
+  ]
   },
   {
     id: 10,
