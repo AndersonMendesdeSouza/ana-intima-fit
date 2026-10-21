@@ -1,5 +1,15 @@
 // CONFIGURAÇÃO: substitua pelo WhatsApp da loja, com DDI 55 + DDD + número, apenas dígitos.
 const WHATSAPP = '5564999999687';
+const VISITOR_NAME_KEY = 'anas-intimafit-visitor-name';
+let visitorName = null;
+try {
+ const savedName = localStorage.getItem(VISITOR_NAME_KEY);
+ if (savedName !== null) {
+  visitorName = savedName.replace(/\s+/g, ' ').trim().slice(0, 60);
+ }
+} catch (error) {
+ console.warn('Não foi possível recuperar o nome neste navegador.', error);
+}
 // Fotos locais organizadas por categoria na pasta assets.
 const categories = [
   { id:'calcinha', name:'Calcinhas GD1', image:'assets/calcinhas/calcinha1.webp' },
@@ -10,7 +20,11 @@ const categories = [
 // Os produtos são carregados de mocks/products.js antes deste arquivo.
 const priceFormatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
 const categoryName = id => categories.find(c=>c.id===id)?.name || id;
-const whatsappLink = message => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`;
+function whatsappLink(interest) {
+ const greeting = visitorName ? `Olá, meu nome é ${visitorName}!` : 'Olá!';
+ const message = `${greeting} Tenho interesse em ${interest}.`;
+ return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`;
+}
 const arrowIcon = '<svg class="arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14" /></svg>';
 const categoriesGrid = document.querySelector('#categories-grid');
 const filters = document.querySelector('#filters');
@@ -87,7 +101,7 @@ function renderProduct(product) {
     <summary aria-label="Formas de pagamento de ${product.name}">Formas de pagamento</summary>
     ${paymentContent}
    </details>
-   <a class="product-link" href="${whatsappLink(`Olá! Gostaria de saber mais sobre ${product.name} (${categoryName(product.category)}).`)}" target="_blank" rel="noopener noreferrer">Consultar no WhatsApp ${arrowIcon}</a>
+   <a class="product-link" data-whatsapp-interest="${product.name} (${categoryName(product.category)})" href="${whatsappLink(`${product.name} (${categoryName(product.category)})`)}" target="_blank" rel="noopener noreferrer">Consultar no WhatsApp ${arrowIcon}</a>
   </div>
  </article>`;
 }
@@ -152,7 +166,48 @@ function renderProducts(id='todos'){
 }
 window.addEventListener('resize',()=>productGrid.querySelectorAll('.product-group').forEach(updateCarouselControls));
 renderCategories();renderFilters();renderProducts();observeNew();
-document.querySelectorAll('.whatsapp-general').forEach(a=>a.href=whatsappLink('Olá! Vim pelo catálogo da Ana\'s IntimaFit e gostaria de conhecer as peças.'));
+const welcomeModal = document.querySelector('#welcome-modal');
+const welcomeForm = document.querySelector('#welcome-form');
+const visitorNameInput = document.querySelector('#visitor-name');
+const heroWelcome = document.querySelector('#hero-welcome');
+function updatePersonalization() {
+ heroWelcome.textContent = visitorName ? `Seja bem-vindo(a), ${visitorName}!` : '';
+ heroWelcome.hidden = !visitorName;
+ document.querySelectorAll('[data-whatsapp-interest]').forEach(link => {
+  link.href = whatsappLink(link.dataset.whatsappInterest);
+ });
+}
+function finishWelcome(name) {
+ visitorName = name;
+ try {
+  localStorage.setItem(VISITOR_NAME_KEY, visitorName);
+ } catch (error) {
+  console.warn('Não foi possível salvar o nome neste navegador.', error);
+ }
+ updatePersonalization();
+ welcomeModal.close();
+ document.querySelector('.hero .button').focus({ preventScroll: true });
+}
+welcomeForm.addEventListener('submit', event => {
+ event.preventDefault();
+ const name = visitorNameInput.value.replace(/\s+/g, ' ').trim();
+ if (!name) {
+  visitorNameInput.setCustomValidity('Digite seu nome ou escolha continuar sem informar.');
+  visitorNameInput.reportValidity();
+  return;
+ }
+ finishWelcome(name);
+});
+visitorNameInput.addEventListener('input', () => visitorNameInput.setCustomValidity(''));
+document.querySelector('#welcome-skip').addEventListener('click', () => finishWelcome(''));
+welcomeModal.addEventListener('cancel', event => {
+ event.preventDefault();
+ finishWelcome('');
+});
+updatePersonalization();
+if (visitorName === null) {
+ welcomeModal.showModal();
+}
 document.querySelector('#year').textContent=new Date().getFullYear();
 const menuButton=document.querySelector('#menu-toggle');const nav=document.querySelector('#main-nav');
 menuButton.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));menuButton.setAttribute('aria-label',open?'Fechar menu':'Abrir menu')});

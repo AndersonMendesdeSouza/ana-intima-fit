@@ -57,6 +57,27 @@
 .footer-credit a{display:inline-flex;align-items:center;gap:5px;vertical-align:middle;color:var(--cream);text-decoration:underline;text-decoration-color:var(--rose);text-underline-offset:3px}
 .footer-instagram-icon{width:14px;height:14px;flex-shrink:0;object-fit:contain;filter:brightness(0) invert(1);opacity:.9}
 .footer-credit a:focus-visible{outline:2px solid var(--cream);outline-offset:4px}
+.hero-welcome{display:block;max-width:100%;margin-bottom:18px;color:#f5eae6;font-size:clamp(16px,2vw,21px);line-height:1.4;overflow-wrap:anywhere}
+.hero-welcome[hidden]{display:none}
+body:has(.welcome-modal[open]){overflow:hidden}
+.welcome-modal{width:min(460px,calc(100% - 32px));max-height:calc(100dvh - 32px);padding:0;border:1px solid var(--line);border-radius:22px;background:var(--cream);color:var(--ink);box-shadow:0 24px 80px rgba(50,40,38,.2)}
+.welcome-modal::backdrop{background:rgba(37,26,25,.56);backdrop-filter:blur(6px)}
+.welcome-content{padding:36px;text-align:center}
+.welcome-logo{width:76px;height:76px;margin:0 auto 24px;object-fit:contain;border-radius:50%}
+.welcome-content .eyebrow{font-size:10px;letter-spacing:.18em}
+.welcome-content h2{margin:16px 0;font-size:38px;line-height:1.16}
+.welcome-content h2 em{color:var(--rose)}
+.welcome-content p{margin:0 0 26px;color:var(--muted);font-size:14px;line-height:1.7}
+.welcome-content form{text-align:left}
+.welcome-content label{display:block;margin-bottom:9px;font-size:13px;font-weight:500}
+.welcome-content input{width:100%;min-height:50px;padding:13px 14px;border:1px solid #d8c9c3;border-radius:10px;background:white;color:var(--ink);font:400 16px var(--sans)}
+.welcome-content input::placeholder{color:var(--muted);font-size:13px}
+.welcome-submit{width:100%;min-height:50px;margin-top:16px;cursor:pointer}
+.welcome-skip{min-height:44px;margin-top:10px;padding:10px;border:0;background:transparent;color:var(--muted);font-size:12px;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.welcome-skip:hover{color:var(--ink)}
+.welcome-content small{display:block;margin-top:12px;color:var(--muted);font-size:11px;line-height:1.6}
+.welcome-content input:focus-visible,.welcome-content button:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
+@media(max-width:640px){.welcome-content{padding:28px 22px}.welcome-content h2{font-size:34px}.welcome-logo{width:64px;height:64px;margin-bottom:20px}.hero-welcome{margin-bottom:14px}}
 @media(max-width:640px){
  .site-header .brand-logo{width:52px;height:52px}
  .header-inner{display:grid;grid-template-columns:52px minmax(0,1fr) 52px;gap:12px}

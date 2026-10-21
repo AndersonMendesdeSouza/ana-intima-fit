@@ -18,6 +18,21 @@
 </head>
 
 <body>
+  <dialog class="welcome-modal" id="welcome-modal" aria-labelledby="welcome-title" aria-describedby="welcome-description">
+    <div class="welcome-content">
+      <img class="welcome-logo" src="assets/logo.jpg" alt="Ana's IntimaFit" width="76" height="76" />
+      <span class="eyebrow">QUE BOM TER VOCÊ AQUI</span>
+      <h2 id="welcome-title">Boas-vindas à<br><em>Ana's IntimaFit.</em></h2>
+      <p id="welcome-description">Como podemos chamar você? Conte seu nome para personalizarmos sua experiência com carinho.</p>
+      <form id="welcome-form">
+        <label for="visitor-name">Seu nome</label>
+        <input id="visitor-name" name="name" type="text" autocomplete="given-name" placeholder="Como você gosta de ser chamado?" maxlength="60" required autofocus />
+        <button class="button button-light welcome-submit" type="submit">Quero conhecer a coleção <span aria-hidden="true">↗</span></button>
+      </form>
+      <button class="welcome-skip" id="welcome-skip" type="button">Continuar sem informar</button>
+      <small>Seu nome fica salvo apenas neste navegador.</small>
+    </div>
+  </dialog>
   <div class="announcement">Peças selecionadas com carinho para cada versão de você <span>✦</span></div>
   <header class="site-header" id="topo">
     <div class="container header-inner">
@@ -40,7 +55,9 @@
       <div class="hero-photo" role="img" aria-label="Editorial de moda feminina"></div>
       <div class="hero-shade"></div>
       <div class="container hero-content">
-        <div class="hero-copy reveal"><span class="eyebrow light">ANA'S INTIMAFIT · NOVA COLEÇÃO</span>
+        <div class="hero-copy reveal">
+          <span class="hero-welcome" id="hero-welcome" hidden></span>
+          <span class="eyebrow light">ANA'S INTIMAFIT · NOVA COLEÇÃO</span>
           <h1>Vista sua<br><em>melhor versão.</em></h1>
           <p>Delicadeza, conforto e confiança em peças que acompanham todos os seus momentos.</p><a
             class="button button-light" href="#colecao">Descubra a coleção
@@ -92,7 +109,7 @@
       <div class="container contact-inner reveal"><span class="eyebrow">ESTAMOS AQUI PARA VOCÊ</span>
         <h2>Encontrou sua<br><em>próxima peça favorita?</em></h2>
         <p>Chame a gente no WhatsApp e receba um atendimento especial.</p><a class="button button-dark whatsapp-general"
-          href="#" target="_blank" rel="noopener noreferrer">Conversar no WhatsApp <svg class="arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14" /></svg></a>
+          href="#" data-whatsapp-interest="conhecer as peças da Ana's IntimaFit" target="_blank" rel="noopener noreferrer">Conversar no WhatsApp <svg class="arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14" /></svg></a>
       </div>
     </section>
   </main>
