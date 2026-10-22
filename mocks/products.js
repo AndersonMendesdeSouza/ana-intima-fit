@@ -16,9 +16,8 @@ const products = [
     },
     tag: '',
     image: [ 
+      'assets/calcinhas/cosderenda/cosrenda.png',
       'assets/calcinhas/cosderenda/cosrenda1.png',
-      'assets/calcinhas/cosderenda/cosrenda2.png',
-      'assets/calcinhas/cosderenda/cosrenda3.png',
     ]
   },
   {
@@ -34,9 +33,25 @@ const products = [
     },
     tag: '',
     image:[ 
-      'assets/calcinhas/cosrendalargo/cosrendalargo2.png',
       'assets/calcinhas/cosrendalargo/cosrendalargo1.png',
-      'assets/calcinhas/cosrendalargo/cosrendalargo3.png',
+      'assets/calcinhas/cosrendalargo/cosrendalargo2.png',
+    ]
+  },
+  {
+    id: 2,
+    name: 'Calcinha Cós largo sem renda',
+    category: 'calcinha',
+    price: 30.00,
+    sizes: ['P', 'M', 'G', 'GG'],
+    payment: {
+      methods: 'Pix, dinheiro ou débito',
+      creditInstallments: 3,
+      bulk: { minQuantity: 5, unitPrice: 25.00, methods: 'dinheiro, Pix ou débito' }
+    },
+    tag: '',
+    image:[ 
+      'assets/calcinhas/coslargosemrenda/semrenda1.png',
+      'assets/calcinhas/coslargosemrenda/semrenda2.png',
     ]
   },
   {
@@ -54,7 +69,6 @@ const products = [
     image: [
       'assets/calcinhas/regulagem/regulagem1.png',
       'assets/calcinhas/regulagem/regulagem2.png',
-      'assets/calcinhas/regulagem/regulagem3.png',
     ]
   },
   {
