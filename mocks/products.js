@@ -5,59 +5,57 @@
 const products = [
   {
     id: 1,
-    name: 'Fita de regulagem',
+    name: 'Calcinha Cós de renda',
     category: 'calcinha',
     price: 30.00,
-    sizes: ['P', 'M', 'G'],
+    sizes: ['P', 'M', 'G', 'GG'],
     payment: {
       methods: 'Pix, dinheiro ou débito',
       creditInstallments: 3,
       bulk: { minQuantity: 5, unitPrice: 25.00, methods: 'dinheiro, Pix ou débito' }
     },
     tag: '',
-    image: 'assets/calcinhas/calcinha1.webp'
+    image: [ 
+      'assets/calcinhas/cosderenda/cosrenda1.png',
+      'assets/calcinhas/cosderenda/cosrenda2.png',
+      'assets/calcinhas/cosderenda/cosrenda3.png',
+    ]
   },
   {
     id: 2,
-    name: 'Cós largo de renda',
+    name: 'Calcinha Cós de renda',
     category: 'calcinha',
     price: 30.00,
-    sizes: ['P', 'M', 'G'],
+    sizes: ['P', 'M', 'G', 'GG'],
     payment: {
       methods: 'Pix, dinheiro ou débito',
       creditInstallments: 3,
       bulk: { minQuantity: 5, unitPrice: 25.00, methods: 'dinheiro, Pix ou débito' }
     },
     tag: '',
-    image: 'assets/calcinhas/calcinha2.webp'
+    image:[ 
+      'assets/calcinhas/cosrendalargo/cosrendalargo2.png',
+      'assets/calcinhas/cosrendalargo/cosrendalargo1.png',
+      'assets/calcinhas/cosrendalargo/cosrendalargo3.png',
+    ]
   },
   {
     id: 3,
-    name: 'Cós de renda',
+    name: 'Cós de regulagem',
     category: 'calcinha',
     price: 30.00,
-    sizes: ['P', 'M', 'G'],
+    sizes: ['P', 'M', 'G', 'GG'],
     payment: {
       methods: 'Pix, dinheiro ou débito',
       creditInstallments: 3,
       bulk: { minQuantity: 5, unitPrice: 25.00, methods: 'dinheiro, Pix ou débito' }
     },
     tag: '',
-    image: 'assets/calcinhas/calcinha3.jpeg'
-  },
-  {
-    id: 4,
-    name: 'Cós largo sem renda',
-    category: 'calcinha',
-    price: 30.00,
-    sizes: ['P', 'M', 'G'],
-    payment: {
-      methods: 'Pix, dinheiro ou débito',
-      creditInstallments: 3,
-      bulk: { minQuantity: 5, unitPrice: 25.00, methods: 'dinheiro, Pix ou débito' }
-    },
-    tag: '',
-    image: 'assets/calcinhas/calcinha1.webp'
+    image: [
+      'assets/calcinhas/regulagem/regulagem1.png',
+      'assets/calcinhas/regulagem/regulagem2.png',
+      'assets/calcinhas/regulagem/regulagem3.png',
+    ]
   },
   {
     id: 5,
@@ -82,7 +80,7 @@ const products = [
     name: 'Bojo',
     category: 'lingerie',
     price: 189.90,
-    sizes: ['P', 'M', 'G'],
+    sizes: ['P', 'M', 'G', 'GG'],
     payment: {
       methods: 'Pix, dinheiro ou débito',
       creditInstallments: 3,
@@ -99,7 +97,7 @@ const products = [
       methods: 'Pix, dinheiro ou débito',
       creditInstallments: 3,
     },
-    sizes: ['P', 'M', 'G'],
+    sizes: ['P', 'M', 'G', 'GG'],
     tag: '',
     image: 'assets/lingeries/lingeri3.jpeg'
   },
@@ -147,28 +145,39 @@ const products = [
   },
   {
     id: 10,
-    name: 'Malha',
-    category: 'camisola',
-    price: 169.90,
-    payment: {
-      methods: 'Pix, dinheiro ou débito',
-      creditInstallments: 3,
-    },
-    sizes: ['P', 'M', 'G'],
-    tag: '',
-    image: 'assets/roby/roby2.webp'
-  },
-  {
-    id: 11,
-    name: 'Seda com renda',
+    name: 'Seda e renda',
     category: 'camisola',
     price: 229.90,
     payment: {
       methods: 'Pix, dinheiro ou débito',
       creditInstallments: 3,
     },
-    sizes: ['P', 'M', 'G'],
+    sizes: ['P', 'M', 'G', 'GG'],
     tag: '',
-    image: 'assets/roby/roby3.webp'
-  }
+    image: [
+    'assets/camisola/camisola1.png',
+    'assets/camisola/camisola2.png',
+    'assets/camisola/camisola3.png',
+    'assets/camisola/camisola4.png',
+    'assets/camisola/camisola5.png',
+    'assets/camisola/camisola6.png',
+      
+    ]
+  },
+  {
+    id: 11,
+    name: 'Malha e renda',
+    category: 'camisola',
+    price: 169.90,
+    payment: {
+      methods: 'Pix, dinheiro ou débito',
+      creditInstallments: 3,
+    },
+    sizes: ['P', 'M', 'G', 'GG'],
+    tag: '',
+    image: [
+    'assets/camisola/malha/malha1.png',
+      
+    ]
+  },
 ];

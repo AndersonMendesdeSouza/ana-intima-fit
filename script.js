@@ -12,10 +12,10 @@ try {
 }
 // Fotos locais organizadas por categoria na pasta assets.
 const categories = [
-  { id:'calcinha', name:'Calcinhas GD1', image:'assets/calcinhas/calcinha1.webp' },
+  { id:'calcinha', name:'Calcinhas GD1', image:'assets/calcinhas/cosderenda/cosrenda1.png' },
   { id:'lingerie', name:'Lingeries', image:'assets/lingeries/bojoSoft/bojosoftbej.jpg' },
-  { id:'baby-doll', name:'Baby Doll', image:'assets/lingeries/lingeri4.png' },
-  { id:'camisola', name:'Camisola', image:'assets/roby/roby2.webp' }
+  { id:'baby-doll', name:'Baby Doll', image:'assets/babydol/babydolmalha/babydolazul.png' },
+  { id:'camisola', name:'Camisola', image:'assets/camisola/camisola1.png' }
 ];
 // Os produtos são carregados de mocks/products.js antes deste arquivo.
 const priceFormatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
