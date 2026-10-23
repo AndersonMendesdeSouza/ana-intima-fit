@@ -15,7 +15,8 @@ const categories = [
   { id:'calcinha', name:'Calcinhas GD1', image:'assets/calcinhas/cosderenda/cosrenda1.png' },
   { id:'lingerie', name:'Lingeries', image:'assets/lingeries/bojoSoft/bojosoftbej.jpg' },
   { id:'baby-doll', name:'Baby Doll', image:'assets/babydol/babydolmalha/babydolazul.png' },
-  { id:'camisola', name:'Camisola', image:'assets/camisola/camisola1.png' }
+  { id:'camisola', name:'Camisola', image:'assets/camisola/camisola1.png' },
+  { id:'robes', name:'Robes', image:'assets/robes/noiva.png' },
 ];
 // Os produtos são carregados de mocks/products.js antes deste arquivo.
 const priceFormatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });

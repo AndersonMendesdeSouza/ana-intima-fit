@@ -12,7 +12,7 @@ const products = [
     payment: {
       methods: 'Pix, dinheiro ou débito',
       creditInstallments: 3,
-      bulk: { minQuantity: 5, unitPrice: 25.00, methods: 'dinheiro, Pix ou débito' }
+      bulk: { minQuantity: 4, unitPrice: 25.00, methods: 'dinheiro, Pix ou débito' }
     },
     tag: '',
     image: [ 
@@ -29,7 +29,7 @@ const products = [
     payment: {
       methods: 'Pix, dinheiro ou débito',
       creditInstallments: 3,
-      bulk: { minQuantity: 5, unitPrice: 25.00, methods: 'dinheiro, Pix ou débito' }
+      bulk: { minQuantity: 4, unitPrice: 25.00, methods: 'dinheiro, Pix ou débito' }
     },
     tag: '',
     image:[ 
@@ -38,7 +38,7 @@ const products = [
     ]
   },
   {
-    id: 2,
+    id: 3,
     name: 'Calcinha Cós largo sem renda',
     category: 'calcinha',
     price: 30.00,
@@ -46,7 +46,7 @@ const products = [
     payment: {
       methods: 'Pix, dinheiro ou débito',
       creditInstallments: 3,
-      bulk: { minQuantity: 5, unitPrice: 25.00, methods: 'dinheiro, Pix ou débito' }
+      bulk: { minQuantity: 4, unitPrice: 25.00, methods: 'dinheiro, Pix ou débito' }
     },
     tag: '',
     image:[ 
@@ -55,7 +55,7 @@ const products = [
     ]
   },
   {
-    id: 3,
+    id: 4,
     name: 'Cós de regulagem',
     category: 'calcinha',
     price: 30.00,
@@ -63,7 +63,7 @@ const products = [
     payment: {
       methods: 'Pix, dinheiro ou débito',
       creditInstallments: 3,
-      bulk: { minQuantity: 5, unitPrice: 25.00, methods: 'dinheiro, Pix ou débito' }
+      bulk: { minQuantity: 4, unitPrice: 25.00, methods: 'dinheiro, Pix ou débito' }
     },
     tag: '',
     image: [
@@ -81,17 +81,18 @@ const products = [
       methods: 'Pix, dinheiro ou débito',
       creditInstallments: 3,
     },
-    tag: '',
+    tag: 'Bojo soft',
     image: [
       'assets/lingeries/bojoSoft/bojosoftbej.jpg',
       'assets/lingeries/bojoSoft/bojosoftbejcosta.jpg',
       'assets/lingeries/bojoSoft/bojosoftprebej.jpg',
-      'assets/lingeries/bojoSoft/bojosoftpreto.jpg'
+      'assets/lingeries/bojoSoft/bojosoftpreto.jpg',
+      'assets/lingeries/bojoSoft/bojosoftpreto2.png'
     ]
   },
   {
     id: 6,
-    name: 'Bojo',
+    name: 'Lingerie Dani Marfim',
     category: 'lingerie',
     price: 189.90,
     sizes: ['P', 'M', 'G', 'GG'],
@@ -99,24 +100,116 @@ const products = [
       methods: 'Pix, dinheiro ou débito',
       creditInstallments: 3,
     },
-    tag: '',
-    image: 'assets/lingeries/lingeri2.webp'
+    tag: 'Sem Bojo',
+    image: [
+        'assets/lingeries/sembojo/dani.png',
+        'assets/lingeries/sembojo/dani2.png',
+        'assets/lingeries/sembojo/dani3.png',
+    ]
   },
   {
     id: 7,
-    name: 'Sem bojo',
+    name: 'Lingerie Aura',
     category: 'lingerie',
-    price: 179.90,
+    price: 239.90,
+    sizes: ['P', 'M', 'G', 'GG'],
+    payment: {
+      methods: 'Pix, dinheiro ou débito',
+      creditInstallments: 3,
+    },
+    tag: 'Sem Bojo',
+    image: [
+        'assets/lingeries/sembojo/aura.png',
+        'assets/lingeries/sembojo/aura2.png',
+    ]
+  },
+  {
+    id: 8,
+    name: 'Lingerie Camile',
+    category: 'lingerie',
+    price: 209.90,
+    sizes: ['P', 'M', 'G', 'GG'],
+    payment: {
+      methods: 'Pix, dinheiro ou débito',
+      creditInstallments: 3,
+    },
+    tag: 'Sem Bojo',
+    image: [
+        'assets/lingeries/sembojo/camile.png',
+        'assets/lingeries/sembojo/camile2.png',
+        'assets/lingeries/sembojo/camile3.png',
+        'assets/lingeries/sembojo/camile4.png',
+    ]
+  },
+  {
+    id: 9,
+    name: 'Lingerie Donatela',
+    category: 'lingerie',
+    price: 199.90,
+    sizes: ['P', 'M', 'G', 'GG'],
+    payment: {
+      methods: 'Pix, dinheiro ou débito',
+      creditInstallments: 3,
+    },
+    tag: 'Sem Bojo',
+    image: [
+        'assets/lingeries/sembojo/donatela.png',
+    ]
+  },
+  {
+    id: 10,
+    name: 'Lingerie Duda',
+    category: 'lingerie',
+    price: 189.90,
     payment: {
       methods: 'Pix, dinheiro ou débito',
       creditInstallments: 3,
     },
     sizes: ['P', 'M', 'G', 'GG'],
-    tag: '',
-    image: 'assets/lingeries/lingeri3.jpeg'
+    tag: 'Sem Bojo',
+    image: 'assets/lingeries/sembojo/duda.png'
   },
   {
-    id: 8,
+    id: 11,
+    name: 'Lingerie Anitta ',
+    category: 'lingerie',
+    price: 199.90,
+    payment: {
+      methods: 'Pix, dinheiro ou débito',
+      creditInstallments: 3,
+    },
+    sizes: ['P', 'M', 'G', 'GG'],
+    tag: 'Com Bojo',
+    image: 'assets/lingeries/combojo/anitta.png'
+  },
+  {
+    id: 12,
+    name: 'Lingerie Lua',
+    category: 'lingerie',
+    price: 189.90,
+    payment: {
+      methods: 'Pix, dinheiro ou débito',
+      creditInstallments: 3,
+    },
+    sizes: ['P', 'M', 'G', 'GG'],
+    tag: 'Com Bojo',
+    image: ['assets/lingeries/combojo/lua.png','assets/lingeries/combojo/lua2.png',]
+  },
+  {
+    id: 13,
+    name: 'Lingerie Flor',
+    category: 'lingerie',
+    price: 189.90,
+    payment: {
+      methods: 'Pix, dinheiro ou débito',
+      creditInstallments: 3,
+    },
+    sizes: ['P', 'M', 'G', 'GG'],
+    tag: 'Com Bojo',
+    image: ['assets/lingeries/combojo/flor.png']
+  },
+  {
+    id: 14,
     name: 'Malha e renda',
     category: 'baby-doll',
     price: 159.90,
@@ -140,7 +233,7 @@ const products = [
   ]
   },
   {
-    id: 9,
+    id: 15,
     name: 'Seda com renda',
     category: 'baby-doll',
     price: 229.90,
@@ -158,7 +251,41 @@ const products = [
   ]
   },
   {
-    id: 10,
+    id: 16,
+    name: 'Robe Noiva Nathy',
+    category: 'robes',
+    price: 329.90,
+    payment: {
+      methods: 'Pix, dinheiro ou débito',
+      creditInstallments: 3,
+    },
+    sizes: ['P', 'M', 'G', 'GG'],
+    tag: '',
+    image:[
+    'assets/robes/noiva.png',
+  ]
+  },
+  {
+    id: 17,
+    name: 'Robe Malha com renda',
+    category: 'robes',
+    price: 279.90,
+    payment: {
+      methods: 'Pix, dinheiro ou débito',
+      creditInstallments: 3,
+    },
+    sizes: ['P', 'M', 'G', 'GG'],
+    tag: '',
+    image:[
+    'assets/robes/robe1.png',
+    'assets/robes/robe2.png',
+    'assets/robes/robe3.png',
+    'assets/robes/robe4.png',
+    'assets/robes/robe5.png',
+  ]
+  },
+  {
+    id: 18,
     name: 'Seda e renda',
     category: 'camisola',
     price: 229.90,
@@ -179,7 +306,7 @@ const products = [
     ]
   },
   {
-    id: 11,
+    id: 19,
     name: 'Malha e renda',
     category: 'camisola',
     price: 169.90,
